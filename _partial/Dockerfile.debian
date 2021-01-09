@@ -1,0 +1,14 @@
+# DOCKER_BUILDKIT=1 docker build . -t chen_x/clash
+#  DOCKER_BUILDKIT=1 docker build . --build-arg CN_MIRROR=1 -t chen_x/clash # if you are in China mainland
+FROM debian
+
+ARG CN_MIRROR=0
+ARG TARGETARCH
+
+RUN if [ $CN_MIRROR = 1 ] ; then DEBIAN_VERSION=$(dpkg --status tzdata|grep Provides|cut -f2 -d'-') \
+    && echo "using mirrors for $DEBIAN_VERSION" \
+    && echo "deb http://mirrors.ustc.edu.cn/debian $DEBIAN_VERSION main non-free contrib" \
+    > /etc/apt/sources.list; else echo "No mirror"; fi
+
+RUN apt-get update \
+    && apt-get install -y curl openssl iptables
