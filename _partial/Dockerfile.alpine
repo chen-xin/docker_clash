@@ -2,11 +2,7 @@
 FROM alpine
 
 ARG CN_MIRROR=0
-
-RUN mkdir -p /clash
-
-ADD ./data/clash-linux /clash
-ADD ./data/entrypoint.sh /clash/entrypoint.sh
+ARG TARGETARCH
 
 RUN if [ $CN_MIRROR=1 ] ; then OS_VER=$(grep main /etc/apk/repositories | sed 's#/#\n#g' | grep "v[0-9]\.[0-9]") \
     && echo "using mirrors for $OS_VER" \
