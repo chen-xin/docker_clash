@@ -19,7 +19,7 @@ iptables -t nat -I clash -p tcp -j LOG --log-prefix \"Clash IPT\" \n\
 RUN curl -o /clash/Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb
 
 RUN CLASH_VERSION=${CLASH_VERSION:-$(curl https://github.com/Dreamacro/clash/tags | grep -o '/Dreamacro/clash/releases/tag/\(v[0-9\.]\+\)' | grep -o 'v[0-9\.]\+' | sort -u | tail -n 1)}\
-    && echo "Using Clash version: ${CLASH_VERSION}"
+    && echo "Using Clash version: ${CLASH_VERSION}" \
     && curl -L https://github.com/Dreamacro/clash/releases/download/${CLASH_VERSION}clash-linux-${TARGETARCH}-${CLASH_VERSION}.gz | gzip -d > /clash/clash-linux\
     && chmod +x /clash/clash-linux
 
