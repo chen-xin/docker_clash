@@ -28,7 +28,7 @@ jobs:
       -
         name: Create Dockerfile
         run: |
-          cat _partial/Dockerfile.${target_os} _partial/Dockerfile_ > Dockerfile
+          target_os=debian cat _partial/Dockerfile.${target_os} _partial/Dockerfile_ > Dockerfile
       -
         name: Build and push
         uses: docker/build-push-action@v2
