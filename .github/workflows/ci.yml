@@ -4,9 +4,11 @@ on:
   push:
     branches: master
 
+
 jobs:
   multi:
     runs-on: ubuntu-latest
+    environment: push_dockerhub
     steps:
       -
         name: Checkout
