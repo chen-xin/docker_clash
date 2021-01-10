@@ -1,4 +1,6 @@
-# docker build . -t chen_x/clash:alpine_armv8
+# DOCKER_BUILDKIT=1 docker build . -f Dockerfile.alpine -t chen_x/clash
+#  DOCKER_BUILDKIT=1 docker build . -f Dockerfile.alpine --build-arg CN_MIRROR=1 -t chen_x/clash:alpine # if you are in China mainland
+
 FROM alpine
 
 ARG CN_MIRROR=0
