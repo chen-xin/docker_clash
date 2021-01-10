@@ -47,10 +47,3 @@ jobs:
             ${{ secrets.DOCKERHUB_REPO }}:alpine-latest
             ${{ secrets.DOCKERHUB_REPO }}:alpine
             ${{ secrets.DOCKERHUB_REPO }}:alpine-v0.19.0
-      -
-        name: Update repo description
-        uses: peter-evans/dockerhub-description@v2
-        with:
-          username: ${{ secrets.USER }}
-          password: ${{ secrets.TOKEN }}
-          repository: ${{ secrets.DOCKERHUB_REPO }}
