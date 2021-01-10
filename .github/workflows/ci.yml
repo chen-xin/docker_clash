@@ -34,8 +34,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ DOCKERHUB_REPO }}:latest
-            ${{ DOCKERHUB_REPO }}:v0.19.0
+            ${{ secrets.DOCKERHUB_REPO }}:latest
+            ${{ secrets.DOCKERHUB_REPO }}:v0.19.0
       -
         name: Build and push alpine
         uses: docker/build-push-action@v2
@@ -45,13 +45,13 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ DOCKERHUB_REPO }}:alpine-latest
-            ${{ DOCKERHUB_REPO }}:alpine
-            ${{ DOCKERHUB_REPO }}:alpine-v0.19.0
+            ${{ secrets.DOCKERHUB_REPO }}:alpine-latest
+            ${{ secrets.DOCKERHUB_REPO }}:alpine
+            ${{ secrets.DOCKERHUB_REPO }}:alpine-v0.19.0
       -
         name: Update repo description
         uses: peter-evans/dockerhub-description@v2
         with:
           username: ${{ secrets.USER }}
           password: ${{ secrets.TOKEN }}
-          repository: chenxinaz/clash
+          repository: ${{ secrets.DOCKERHUB_REPO }}
