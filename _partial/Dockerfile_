@@ -1,0 +1,14 @@
+COPY _partial/entrypoint.sh /clash/
+COPY _partial/download_clash.sh /clash/
+
+ARG CLASH_VERSION
+
+RUN echo "Using clash ${CLASH_VERSION}" \
+    && chmod +x /clash/entrypoint.sh \
+    && chmod +x /clash/download_clash.sh \
+    && /clash/download_clash.sh \
+    && rm /clash/download_clash.sh
+
+ENTRYPOINT ['/clash/entrypoint.sh']
+
+
