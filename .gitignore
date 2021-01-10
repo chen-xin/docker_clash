@@ -1,1 +1,4 @@
 *.swp
+tmp
+!.gitignore
+!.github/

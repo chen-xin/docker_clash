@@ -1,0 +1,27 @@
+name: testing
+
+on:
+  push:
+    branches: master
+jobs:
+  test_github_actions:
+    runs-on: ubuntu-latest
+    environment: push_dockerhub
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+          cat Dockerfile
+      -
+        name: find new Clash version
+        run: |
+          ls
+      -
+        name: Create Dockerfile
+        run: |
+          cat _partial/Dockerfile.debian _partial/Dockerfile_ > Dockerfile
+      -
+        name: commit back repo
+        run: |
+          ls
+

@@ -3,7 +3,6 @@
 FROM debian
 
 ARG CN_MIRROR=0
-ARG TARGETARCH
 
 RUN if [ $CN_MIRROR = 1 ] ; then DEBIAN_VERSION=$(dpkg --status tzdata|grep Provides|cut -f2 -d'-') \
     && echo "using mirrors for $DEBIAN_VERSION" \
