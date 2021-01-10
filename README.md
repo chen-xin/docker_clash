@@ -1,19 +1,20 @@
 ---
-title: 基于clash的单网卡路由网关
+title: Router service on single-NIC linux box with Dreamacro/clash
 tags:
   - docker
   - clash
 ---
 
-[Clash](https://github.com/Dreamacro/clash) 支持VMess, Shadowsocks, Trojan,
-Snell 等多种协议, 可以运行在linux, windows, mac等操作系统以及amd64, armv8
-等多种硬件架构上。
+[Clash](https://github.com/Dreamacro/clash) support VMess, Shadowsocks, Trojan,
+Snell protocol for remote connections, can run on linux, windows, mac on various
+hardware architectures, is popular and under active developing recently. 
 
 Quick Reference
 ===============
 
-- [English version of README](https://github.com/chen-xin/docker_clash/blob/master/README.md) 
+- [中文版](https://github.com/chen-xin/docker_clash/blob/master/README.cn.md)
 - [Clash](https://github.com/Dreamacro/clash)
+
 
 Supported tags and respective Dockerfile links
 ===================================================
@@ -33,14 +34,13 @@ Other Reference
 - [engineerlzk 的CSDN博客](https://me.csdn.net/engineerlzk)
 - [我在用的armbian版本](https://github.com/kuoruan/Build-Armbian/releases/tag/v5.99-20200408)
 
-
 How to use this image
 ===============
 
-1. Config docker log
+Config docker log
 ---------------------
 
-Remember to set docker daemon log size, or you will soon runout of disk space.
+It's recommended to limit docker daemon's log size, or you will soon runout of disk space.
 Modify your `/etc/docker/daemon.json` like the following:
 
 ```
@@ -51,14 +51,16 @@ Modify your `/etc/docker/daemon.json` like the following:
 }
 ```
 
-2. Create macvlan network for docker:
+Create macvlan network for docker:
 -----------------------------------
+
+This image needs macvlan to function properly, modify the below sample to fit your needs.
 
 ```
 docker network create -d macvlan --subnet=192.168.12.0/24 --gateway=192.168.12.1 --ip-range=192.168.12.64/30 -o parent=eth0 macnet
 ```
 
-3. Setup windows 10 client to use the gateway
+Setup windows 10 client to use the gateway(optional)
 ---------------------------------------------
 
 1. Create new external switch with hyper-v manager if there is no existing one.
@@ -70,13 +72,4 @@ Add-VMNetworkAdapter -VMName vEthernetStatic2 -SwitchName External
 4. In browser(firefox), set proxy to socks5://192.168.12.64:7891(as macvlan config)
 
 Now you can break through the great f*** wall.
-
-Managed vs ummanaged
----------------------
-
-In this note, managed means you have authorith to change your local network settings, e.g. in your home network,
-unmanaged means you cannot do any change to your lan, e.g. in your office and your are not admin.
-
-use appropriate compose file to meet your requirements.
-
 

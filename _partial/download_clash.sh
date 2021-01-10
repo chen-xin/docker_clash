@@ -17,8 +17,8 @@ case $ARCH in
     ;;
 esac
 
-echo "Downloading :[https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb]"
-curl -o /clash/Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb
+# echo "Downloading :[https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb]"
+# curl -L -o /clash/Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb
 
 echo "Downloading :[https://github.com/Dreamacro/clash/releases/download/${CLASH_VERSION}/clash-linux-${TARGET_ARCH}-${CLASH_VERSION}.gz]"
 curl -L https://github.com/Dreamacro/clash/releases/download/${CLASH_VERSION}/clash-linux-${TARGET_ARCH}-${CLASH_VERSION}.gz | gzip -d > /clash/clash-linux

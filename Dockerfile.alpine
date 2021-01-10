@@ -13,7 +13,7 @@ RUN apk add --no-cache curl openssl iptables
 COPY _partial/entrypoint.sh /clash/
 COPY _partial/download_clash.sh /clash/
 
-ARG CLASH_VERSION=v1.3.5
+ARG CLASH_VERSION=v0.19.0
 
 RUN echo "Using clash ${CLASH_VERSION}" \
     && chmod +x /clash/entrypoint.sh \
@@ -21,6 +21,6 @@ RUN echo "Using clash ${CLASH_VERSION}" \
     && /clash/download_clash.sh \
     && rm /clash/download_clash.sh
 
-ENTRYPOINT ['/clash/entrypoint.sh']
+ENTRYPOINT ["/clash/entrypoint.sh"]
 
 

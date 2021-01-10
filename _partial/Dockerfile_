@@ -9,6 +9,6 @@ RUN echo "Using clash ${CLASH_VERSION}" \
     && /clash/download_clash.sh \
     && rm /clash/download_clash.sh
 
-ENTRYPOINT ['/clash/entrypoint.sh']
+ENTRYPOINT ["/clash/entrypoint.sh"]
 
 
