@@ -19,7 +19,7 @@ Quick Reference
 Supported tags and respective Dockerfile links
 ===================================================
 
-- [v0.19.0](), [latest](), [v0.19.0-alpine](), [latest-alpine]()
+- [v0.19.0](https://github.com/chen-xin/docker_clash/blob/d32573ead0594f171a3475c57f4f948ef2fcac1c/Dockerfile.debian), [latest](https://github.com/chen-xin/docker_clash/blob/d32573ead0594f171a3475c57f4f948ef2fcac1c/Dockerfile.debian), [v0.19.0-alpine](https://github.com/chen-xin/docker_clash/blob/d32573ead0594f171a3475c57f4f948ef2fcac1c/Dockerfile.alpine), [latest-alpine](https://github.com/chen-xin/docker_clash/blob/d32573ead0594f171a3475c57f4f948ef2fcac1c/Dockerfile.alpine)
 
 Other Reference
 ===============
