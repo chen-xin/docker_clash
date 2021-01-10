@@ -1,25 +1,48 @@
-Clash service on docker on single-NIC linux box(PhicommN1)
+---
+title: 基于clash的单网卡路由网关
+tags:
+  - docker
+  - clash
+---
+
+[Clash](https://github.com/Dreamacro/clash) 支持VMess, Shadowsocks, Trojan,
+Snell 等多种协议, 可以运行在linux, windows, mac等操作系统以及amd64, armv8
+等多种硬件架构上。
+
+Quick Reference
+===============
+
+- [English version of README](https://github.com/chen-xin/docker_clash/blob/master/README.md) 
+- [Clash](https://github.com/Dreamacro/clash)
+
+Supported tags and respective Dockerfile links
 ===================================================
 
-[Clash](https://github.com/Dreamacro/clash) support VMess, Shadowsocks, Trojan,
-Snell protocol for remote connections, can run on linux, windows, mac on various
-hardware architectures, is popular and under active developing recently. 
+- [v0.19.0](), [latest](), [v0.19.0-alpine](), [latest-alpine]()
 
-PhicommN1 is an arm box with 2GB ram, 8GB emmc and 1000M lan,
-fair enough for a low power consuming server.
-I got 2 from PinDuodou for about rmb120 each.
+Other Reference
+===============
 
-Setup
------
+- [docker 中运行 openwrt](https://github.com/lisaac/openwrt-in-docker)
+- another[docker 运行 openwrt](https://github.com/luoqeng/OpenWrt-on-Docker)
+- [Use macvlan networks](https://docs.docker.com/network/macvlan/)
+- [斐讯N1 – 完美刷机Armbian教程](https://yuerblog.cc/2019/10/23/%e6%96%90%e8%ae%afn1-%e5%ae%8c%e7%be%8e%e5%88%b7%e6%9c%baarmbian%e6%95%99%e7%a8%8b/)
+- [N1刷Armbian系统并在Docker中安装OpenWrt旁路由的详细教程](https://www.right.com.cn/forum/thread-1347921-1-1.html)
+- [N1盒子做旁路由刷OpenWRT系统（小白专用）](https://www.cnblogs.com/neobuddy/p/n1-setup.html)
+- [Docker上运行Lean大源码编译的OpenWRT（初稿）](https://openwrt.club/93.html)
+- [engineerlzk 的CSDN博客](https://me.csdn.net/engineerlzk)
+- [我在用的armbian版本](https://github.com/kuoruan/Build-Armbian/releases/tag/v5.99-20200408)
 
-### On PhicommN1
 
-1. Flash armbian into PhicommN1.
+How to use this image
+===============
 
-2. Install docker.
+1. Config docker log
+---------------------
 
 Remember to set docker daemon log size, or you will soon runout of disk space.
-In my case, `/etc/docker/daemon.json` is like the following:
+Modify your `/etc/docker/daemon.json` like the following:
+
 ```
 {
     "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn/"],
@@ -27,13 +50,16 @@ In my case, `/etc/docker/daemon.json` is like the following:
           "log-opts": {"max-size":"100m", "max-file":"3"}
 }
 ```
+
 2. Create macvlan network for docker:
+-----------------------------------
+
 ```
 docker network create -d macvlan --subnet=192.168.12.0/24 --gateway=192.168.12.1 --ip-range=192.168.12.64/30 -o parent=eth0 macnet
 ```
-3. Run `docker-compose -f docker-compose.unmanaged.yml up -d`
 
-### On client(Windows 10 with hyper-v)
+3. Setup windows 10 client to use the gateway
+---------------------------------------------
 
 1. Create new external switch with hyper-v manager if there is no existing one.
 2. Create new vEthernet adapater with powershell(admin):
