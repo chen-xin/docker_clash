@@ -34,7 +34,7 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_REPO }}:latest
-            ${{ secrets.DOCKERHUB_REPO }}:v0.19.0
+            ${{ secrets.DOCKERHUB_REPO }}: ${{ github.ref }}
       -
         name: Build and push alpine
         uses: docker/build-push-action@v2
@@ -46,4 +46,4 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_REPO }}:alpine-latest
             ${{ secrets.DOCKERHUB_REPO }}:alpine
-            ${{ secrets.DOCKERHUB_REPO }}:alpine-v0.19.0
+            ${{ secrets.DOCKERHUB_REPO }}:alpine-${{ github.ref }}
