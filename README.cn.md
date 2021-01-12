@@ -71,5 +71,4 @@ Add-VMNetworkAdapter -VMName vEthernetStatic2 -SwitchName External
 3. 设置新虚拟网卡的ip=192.168.12.12, 网关=192.168.12.64(跟上面创建macvlan的相同).
 4. 在浏览器(例如firefox), 设置代理为socks5://192.168.12.64:7891（具体按配置）.
 
-Now you can break through the great f*** wall.
-
+这样就可以连上互联网了。

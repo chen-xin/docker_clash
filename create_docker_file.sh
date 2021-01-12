@@ -24,6 +24,6 @@ done
 
 echo "New Dockerfile(s) created."
 
-# sed '/Supported tags and respective Dockerfile links/,/Other Reference/p' README.md
+# sed -n '/Supported tags and respective Dockerfile links/,/Other Reference/p' README.md
 # git log -1 | head -n 1 | grep -o "[0-9a-f]\{40,\}"
-
+# sed '/Supported tags and respective Dockerfile links/,/Other Reference/s/\[latest[^)]\+),\? \?//g' README.md | head -n 50

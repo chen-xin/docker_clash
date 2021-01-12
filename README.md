@@ -72,4 +72,3 @@ Add-VMNetworkAdapter -VMName vEthernetStatic2 -SwitchName External
 4. In browser(firefox), set proxy to socks5://192.168.12.64:7891(as macvlan config)
 
 Now you can break through the great f*** wall.
-
