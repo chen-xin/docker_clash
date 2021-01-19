@@ -1,0 +1,73 @@
+# HTTP 端口
+port: 7890
+
+# SOCKS5 端口
+socks-port: 7891
+
+#############################################################
+#
+# Start settings for openwrt
+#
+#############################################################
+redir-port: 7892
+
+
+# DNS 设置
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  # enhanced-mode: fake-ip
+  enhanced-mode: redir-host
+  nameserver:
+    - 'tls://1.1.1.1:853'
+    - 'tcp://1.1.1.1'
+    - 'tls://dns.google'
+    - 119.29.29.29
+    # - 127.0.0.1:5353 # use for DNSCrypt-proxy or other dns app
+
+allow-lan: true
+# Only applicable when setting allow-lan to true
+# "*": bind all IP addresses
+# 192.168.122.11: bind a single IPv4 address
+# "[aaaa::a8aa:ff:fe09:57d8]": bind a single IPv6 address
+# bind-address: "*"
+
+#############################################################
+#
+# End settings for openwrt
+#
+#############################################################
+
+# Rule / Global/ Direct (默认为 Rule 模式)
+mode: Rule
+
+# 设置日志等级 (默认为 info)
+# info / warning / error / debug / silent
+log-level: info
+
+# RESTful API for clash
+external-controller: 0.0.0.0:9090
+
+# you can put the static web resource (such as clash-dashboard) to a directory, and clash would serve in `${API}/ui`
+# input is a relative path to the configuration directory or an absolute path
+# external-ui: folder
+
+# RESTful API 的口令 (可选)
+# secret: ""
+
+# experimental feature
+experimental:
+  ignore-resolve-fail: true # ignore dns resolve fail, default value is true
+
+# authentication of local SOCKS5/HTTP(S) server
+# authentication:
+#  - "user1:pass1"
+#  - "user2:pass2"
+
+# # experimental hosts, support wildcard (e.g. *.clash.dev Even *.foo.*.example.com)
+# # static domain has a higher priority than wildcard domain (foo.example.com > *.example.com)
+# hosts:
+#   '*.clash.dev': 127.0.0.1
+#   'alpha.clash.dev': '::1'
+
+proxies:

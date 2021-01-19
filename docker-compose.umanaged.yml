@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  clash:
+    image: chen_x/clash:alpine_armv8
+    # privileged: true  # replaced by cap_add
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./data:/clash
+    networks:
+      macnet:
+      clash:
+    restart: unless-stopped
+    entrypoint: ['/clash/entrypoint.sh']
+networks:
+  clash:
+  macnet:
+    external: true
