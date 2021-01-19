@@ -12,5 +12,5 @@ iptables -t nat -A CLASH -d 240.0.0.0/4 -j RETURN
 # Redirect all TCP traffic to 7892 port, where Clash listens
 iptables -t nat -A CLASH -p tcp -j REDIRECT --to-ports 7892
 iptables -t nat -A PREROUTING -p tcp -j CLASH
-iptables -t nat -I clash -p tcp -j LOG --log-prefix \"Clash IPT\"
-/clash/clash-linux -d /clash/config
+# iptables -t nat -I clash -p tcp -j LOG --log-prefix \"Clash IPT\"
+/clash/clash-linux -d /clash

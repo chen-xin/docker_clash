@@ -3,3 +3,5 @@ tmp
 !.gitignore
 !.github/
 session.vim
+data
+config_backup

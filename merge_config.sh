@@ -4,7 +4,7 @@
 prefix="${PWD##*/}_"
 data_dir="data"
 config_file="$data_dir/config.yaml"
-backup_dir="config_backup"
+backup_dir="data/config_backup"
 
 if docker ps | grep $prefix
 then
@@ -19,7 +19,7 @@ if [[ ! -f "$data_dir/entrypoint.sh" ]]; then
     echo "warning: you may need to copy clash-linux, Country.mmdb to $data_dir"
     echo "Refer to README for more info."
     mkdir -p $data_dir
-    cp config/entrypoint.sh "$data_dir/"
+    cp _partial/entrypoint.sh "$data_dir/"
 fi
 
 if [[ ! -f "$data_dir/clash-linux" ]]; then
@@ -39,6 +39,6 @@ fi
 mkdir -p $backup_dir
 backup_file="$backup_dir/clash_config.$(date +%Y-%m-%d_%H-%M-%S).yaml"
 mv $config_file $backup_file
-cat config/_config.partial.yaml > $config_file
+cat _partial/_config.partial.yaml > $config_file
 sed -e '1,/^proxies:$/ d' $new_config >> $config_file
 

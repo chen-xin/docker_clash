@@ -33,8 +33,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_REPO }}:latest
-            ${{ secrets.DOCKERHUB_REPO }}: ${{ github.ref }}
+            chenxinaz/clash_gw:latest
+            chenxinaz/clash_gw:${{ github.ref }}
       -
         name: Build and push alpine
         uses: docker/build-push-action@v2
@@ -44,6 +44,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_REPO }}:alpine-latest
-            ${{ secrets.DOCKERHUB_REPO }}:alpine
-            ${{ secrets.DOCKERHUB_REPO }}:alpine-${{ github.ref }}
+            chenxinaz/clash_gw:alpine-latest
+            chenxinaz/clash_gw:alpine
+            chenxinaz/clash_gw:alpine-${{ github.ref }}
